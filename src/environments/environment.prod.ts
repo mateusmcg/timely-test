@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://timelyapp.time.ly',
+  defaultView: 'posterboard'
 };

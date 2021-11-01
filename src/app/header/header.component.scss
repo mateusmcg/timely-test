@@ -1,0 +1,58 @@
+section {
+  display: flex;
+  flex-grow: 1;
+  height: 4rem;
+  border-bottom: 1px rgb(221, 221, 221) solid;
+  padding: 0 1.5rem;
+  align-items: center;
+
+  .mat-stroked-button {
+    border-color: rgb(221, 221, 221);
+  }
+
+  h1.logo {
+    font-size: large;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-right: 0.125rem rgb(221, 221, 221) solid;
+    padding-right: 1rem;
+    margin-right: 1rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .actions {
+    flex: 1;
+
+    button {
+      margin-right: 1rem;
+    }
+
+    .datepicker {
+      width: 11rem;
+
+      & input:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (max-width: 625px) {
+  section {
+    h1.logo {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  section {
+    .actions button {
+      display: none;
+    }
+  }
+}

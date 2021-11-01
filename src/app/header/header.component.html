@@ -1,0 +1,31 @@
+<section>
+  <h1 class="logo" (click)="loadDefault()">
+    {{ calendarSettings?.title }}
+  </h1>
+  <div class="actions">
+    <button mat-stroked-button (click)="loadToday()">Today</button>
+    <mat-form-field class="datepicker">
+      <input matInput [formControl]="date" [matDatepicker]="picker" (click)="picker.open()" readonly>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="views">
+    <button mat-stroked-button [matMenuTriggerFor]="menu">
+      View: {{ selectedView | titlecase }}
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >arrow_drop_down</mat-icon
+      >
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="changeView('posterboard')">
+        Posterboard
+      </button>
+      <button mat-menu-item (click)="changeView('tile')">Tile</button>
+      <button mat-menu-item (click)="changeView('stream')">Stream</button>
+      <button mat-menu-item (click)="changeView('agenda')">Agenda</button>
+      <button mat-menu-item (click)="changeView('month')">Month</button>
+      <button mat-menu-item (click)="changeView('week')">Week</button>
+    </mat-menu>
+  </div>
+</section>
