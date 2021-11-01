@@ -13,7 +13,6 @@ import { PosterboardComponent } from './posterboard.component';
     CommonModule,
     PosterboardRoutingModule,
     MatCardModule,
-    MatDialogModule,
     SharedModule
   ]
 })

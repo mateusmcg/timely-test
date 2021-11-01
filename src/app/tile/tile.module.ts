@@ -13,7 +13,6 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     TileRoutingModule,
     MatCardModule,
-    MatDialogModule,
     SharedModule
   ]
 })

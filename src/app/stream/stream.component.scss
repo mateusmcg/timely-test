@@ -1,0 +1,45 @@
+section {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 2rem);
+  padding: 0 1rem;
+
+  .header {
+    background-color: #506688;
+    color: white;
+    text-align: center;
+    padding: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    width: 100%;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.5;
+    }
+
+    .img {
+      height: 144px;
+      width: 144px;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-left: 1rem;
+    }
+
+  }
+}

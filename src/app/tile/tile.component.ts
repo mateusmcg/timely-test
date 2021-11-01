@@ -11,7 +11,7 @@ import { BaseView } from '../shared/base-view/base-view';
   templateUrl: './tile.component.html',
   styleUrls: ['./tile.component.scss']
 })
-export class TileComponent extends BaseView implements OnInit {
+export class TileComponent extends BaseView {
 
   constructor(
     protected calendarService: CalendarService,

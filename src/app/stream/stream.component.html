@@ -1,1 +1,30 @@
-<p>stream works!</p>
+<section>
+  <div *ngFor="let group of groupEvents">
+    <div class="header">{{ group.date | date: "EEEE, MMMM d" }}</div>
+    <div
+      class="body"
+      *ngFor="let event of group.filteredEvents"
+      (click)="openDetails(event)"
+    >
+      <div class="img">
+        <img
+          *ngIf="event.images"
+          [src]="
+            event.images[0]?.sizes?.thumbnail
+              ? event.images[0]?.sizes?.thumbnail.url
+              : ''
+          "
+          [alt]="event.title"
+        />
+      </div>
+      <div class="content">
+        <h1>{{ event.title }}</h1>
+        <small
+          >{{ event.start_datetime | date: "MM d" }} |
+          {{ event.start_datetime | date: "h:mm a" }}</small
+        >
+        <p>{{ event.description_short }}</p>
+      </div>
+    </div>
+  </div>
+</section>

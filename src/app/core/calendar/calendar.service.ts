@@ -9,6 +9,7 @@ import { CalendarFilter } from "../models/calendar-filter.interface";
 import { CalendarFilterItem } from "../models/calendar-filter-item.interface";
 import * as moment from "moment";
 import { DATE_FORMATS } from "../enum/date-formats.enum";
+import { CalendarEventGroup } from "../models/calendar-event-group.interface";
 
 @Injectable()
 export class CalendarService {
@@ -31,7 +32,6 @@ export class CalendarService {
     startDate: moment.Moment,
     perPage: number = 50,
     page: number = 1,
-    groupByDate: boolean = false
   ): Observable<CalendarEvent[]> {
     const eventsUrl = `${environment.apiUrl}/api/calendars/${calendarId}/events`;
 
@@ -39,10 +39,40 @@ export class CalendarService {
       .set("start_date", startDate.format(DATE_FORMATS.YYYY_MM_DD))
       .set("per_page", perPage.toString())
       .set("page", page.toString())
-      .set("group_by_date", groupByDate ? "1" : "0");
 
     return this.http.get<{ data: { items: CalendarEvent[] } }>(eventsUrl, { params }).pipe(
       map((events: { data: { items: CalendarEvent[] } }) => events.data.items)
+    );
+  }
+
+  public getEventsGroup(
+    calendarId: number,
+    startDate: moment.Moment,
+    perPage: number = 50,
+    page: number = 1,
+  ): Observable<CalendarEventGroup[]> {
+    const eventsUrl = `${environment.apiUrl}/api/calendars/${calendarId}/events`;
+
+    const params: HttpParams = new HttpParams()
+      .set("start_date", startDate.format(DATE_FORMATS.YYYY_MM_DD))
+      .set("per_page", perPage.toString())
+      .set("page", page.toString())
+      .set("group_by_date", "1");
+
+    return this.http.get<{ data: { items: { [prop: string]: CalendarEvent[] } } }>(eventsUrl, { params }).pipe(
+      map((events: { data: { items: { [prop: string]: CalendarEvent[] } } }) => {
+        const groupEvents: CalendarEventGroup[] = [];
+
+        Object.keys(events.data.items).forEach((group: string) => {
+          groupEvents.push({
+            date: moment(group),
+            events: events.data.items[group],
+            filteredEvents: events.data.items[group]
+          });
+        });
+
+        return groupEvents;
+      })
     );
   }
 
