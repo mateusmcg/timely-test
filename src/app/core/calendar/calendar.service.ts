@@ -31,49 +31,66 @@ export class CalendarService {
     calendarId: number,
     startDate: moment.Moment,
     perPage: number = 50,
-    page: number = 1,
+    page: number = 1
   ): Observable<CalendarEvent[]> {
     const eventsUrl = `${environment.apiUrl}/api/calendars/${calendarId}/events`;
 
     const params: HttpParams = new HttpParams()
       .set("start_date", startDate.format(DATE_FORMATS.YYYY_MM_DD))
       .set("per_page", perPage.toString())
-      .set("page", page.toString())
+      .set("page", page.toString());
 
-    return this.http.get<{ data: { items: CalendarEvent[] } }>(eventsUrl, { params }).pipe(
-      map((events: { data: { items: CalendarEvent[] } }) => events.data.items)
-    );
+    return this.http
+      .get<{ data: { items: CalendarEvent[] } }>(eventsUrl, { params })
+      .pipe(
+        map((events: { data: { items: CalendarEvent[] } }) => events.data.items)
+      );
   }
 
   public getEventsGroup(
     calendarId: number,
     startDate: moment.Moment,
+    endDate: moment.Moment = null,
     perPage: number = 50,
-    page: number = 1,
+    page: number = 1
   ): Observable<CalendarEventGroup[]> {
     const eventsUrl = `${environment.apiUrl}/api/calendars/${calendarId}/events`;
 
-    const params: HttpParams = new HttpParams()
+    let params: HttpParams = new HttpParams()
       .set("start_date", startDate.format(DATE_FORMATS.YYYY_MM_DD))
       .set("per_page", perPage.toString())
       .set("page", page.toString())
       .set("group_by_date", "1");
 
-    return this.http.get<{ data: { items: { [prop: string]: CalendarEvent[] } } }>(eventsUrl, { params }).pipe(
-      map((events: { data: { items: { [prop: string]: CalendarEvent[] } } }) => {
-        const groupEvents: CalendarEventGroup[] = [];
+    if (endDate) {
+      params = params.set("end_date", endDate.format(DATE_FORMATS.YYYY_MM_DD));
+      params = params.set("lastDate", null);
+    }
 
-        Object.keys(events.data.items).forEach((group: string) => {
-          groupEvents.push({
-            date: moment(group),
-            events: events.data.items[group],
-            filteredEvents: events.data.items[group]
-          });
-        });
+    return this.http
+      .get<{ data: { items: { [prop: string]: CalendarEvent[] } } }>(
+        eventsUrl,
+        { params }
+      )
+      .pipe(
+        map(
+          (events: {
+            data: { items: { [prop: string]: CalendarEvent[] } };
+          }) => {
+            const groupEvents: CalendarEventGroup[] = [];
 
-        return groupEvents;
-      })
-    );
+            Object.keys(events.data.items).forEach((group: string) => {
+              groupEvents.push({
+                date: moment(group),
+                events: events.data.items[group],
+                filteredEvents: events.data.items[group],
+              });
+            });
+
+            return groupEvents;
+          }
+        )
+      );
   }
 
   public getFilters(

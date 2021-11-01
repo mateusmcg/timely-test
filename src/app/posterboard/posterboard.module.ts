@@ -10,7 +10,6 @@ import { PosterboardComponent } from './posterboard.component';
 @NgModule({
   declarations: [PosterboardComponent],
   imports: [
-    CommonModule,
     PosterboardRoutingModule,
     MatCardModule,
     SharedModule

@@ -1,0 +1,12 @@
+section {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  height: calc(100% - 11rem);
+
+  pre {
+    background-color: lightgray;
+    word-wrap: break-word;
+    overflow: auto;
+  }
+}

@@ -7,6 +7,6 @@ import { MatButtonModule, MatDialogModule } from "@angular/material";
   entryComponents: [EventDetailsComponent],
   declarations: [EventDetailsComponent],
   imports: [CommonModule, MatDialogModule, MatButtonModule, MatDialogModule],
-  exports: [EventDetailsComponent],
+  exports: [CommonModule, EventDetailsComponent],
 })
 export class SharedModule {}

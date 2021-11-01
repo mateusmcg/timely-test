@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
 
 import { WeekRoutingModule } from './week-routing.module';
 import { WeekComponent } from './week.component';
@@ -7,7 +8,8 @@ import { WeekComponent } from './week.component';
 @NgModule({
   declarations: [WeekComponent],
   imports: [
-    WeekRoutingModule
+    WeekRoutingModule,
+    SharedModule
   ]
 })
 export class WeekModule { }
