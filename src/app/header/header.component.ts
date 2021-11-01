@@ -1,18 +1,13 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import {
   ActivatedRoute,
   NavigationExtras,
   ParamMap,
-  Params,
-  Route,
   Router,
-  UrlSegment,
 } from "@angular/router";
 import * as moment from "moment";
 import { CalendarSettings } from "src/app/core/models/calendar-settings.interface";
-import { environment } from "src/environments/environment";
-import { CalendarService } from "../core/calendar/calendar.service";
 import { DATE_FORMATS } from "../core/enum/date-formats.enum";
 
 @Component({
@@ -20,7 +15,8 @@ import { DATE_FORMATS } from "../core/enum/date-formats.enum";
   templateUrl: "./header.component.html",
   styleUrls: ["./header.component.scss"],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnChanges {
+  @Input()
   public calendarSettings: CalendarSettings;
 
   public selectedView: string;
@@ -29,43 +25,32 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private calendarService: CalendarService
   ) {
     this.date = new FormControl();
   }
 
-  public ngOnInit(): void {
-    this.loadCalendarSettings();
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.calendarSettings.isFirstChange()) {
+      return;
+    }
+
+    this.listenToRouteChanges();
+    this.listenToDateChanges();
   }
 
-  public loadDefault(): void {
-    this.navigateToCalendar(environment.defaultView, { queryParamsHandling: "" });
-  }
-
-  public loadToday(): void {
+  public loadToday(view: string): void {
     const params: NavigationExtras = {
       queryParams: {
         startDate: moment().format(DATE_FORMATS.MM_DD_YYYY),
       },
     };
 
-    this.navigateToCalendar(this.selectedView, params);
+    this.navigateToCalendar(view, params);
   }
 
   public changeView(selectedView: string): void {
     this.selectedView = selectedView;
     this.navigateToCalendar(this.selectedView);
-  }
-
-  private loadCalendarSettings(): void {
-    this.calendarService
-      .getSettings()
-      .subscribe((settings: CalendarSettings) => {
-        this.calendarSettings = settings;
-
-        this.listenToRouteChanges();
-        this.listenToDateChanges();
-      });
   }
 
   private listenToRouteChanges(): void {
@@ -79,10 +64,10 @@ export class HeaderComponent implements OnInit {
       this.selectedView =
         segments && segments.length === 4
           ? segments[3]
-          : environment.defaultView;
+          : this.calendarSettings.default_view;
 
       if (this.router.url === "/") {
-        this.loadDefault();
+        this.loadToday(this.calendarSettings.default_view);
       }
     });
   }

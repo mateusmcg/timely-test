@@ -1,9 +1,9 @@
 <section>
-  <h1 class="logo" (click)="loadDefault()">
+  <h1 class="logo" (click)="loadToday(calendarSettings.default_view)">
     {{ calendarSettings?.title }}
   </h1>
   <div class="actions">
-    <button mat-stroked-button (click)="loadToday()">Today</button>
+    <button mat-stroked-button (click)="loadToday(selectedView)">Today</button>
     <mat-form-field class="datepicker">
       <input matInput [formControl]="date" [matDatepicker]="picker" (click)="picker.open()" readonly>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -21,11 +21,11 @@
       <button mat-menu-item (click)="changeView('posterboard')">
         Posterboard
       </button>
-      <button mat-menu-item (click)="changeView('tile')">Tile</button>
-      <button mat-menu-item (click)="changeView('stream')">Stream</button>
-      <button mat-menu-item (click)="changeView('agenda')">Agenda</button>
-      <button mat-menu-item (click)="changeView('month')">Month</button>
-      <button mat-menu-item (click)="changeView('week')">Week</button>
+      <button *ngIf="calendarSettings?.enabled_tile" mat-menu-item (click)="changeView('tile')">Tile</button>
+      <button *ngIf="calendarSettings?.enabled_stream" mat-menu-item (click)="changeView('stream')">Stream</button>
+      <button *ngIf="calendarSettings?.enabled_agenda" mat-menu-item (click)="changeView('agenda')">Agenda</button>
+      <button *ngIf="calendarSettings?.enabled_month" mat-menu-item (click)="changeView('month')">Month</button>
+      <button *ngIf="calendarSettings?.enabled_week" mat-menu-item (click)="changeView('week')">Week</button>
     </mat-menu>
   </div>
 </section>

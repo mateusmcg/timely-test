@@ -1,0 +1,47 @@
+section {
+  display: flex;
+  flex-grow: 1;
+  min-height: 5rem;
+  height: auto;
+  border-bottom: 1px rgb(221, 221, 221) solid;
+  margin-bottom: 1rem;
+  padding: 0 1.5rem;
+  align-items: center;
+  justify-content: space-evenly;
+
+  div {
+    margin: 0 0.5rem;
+    width: 100%;
+
+    .mat-form-field {
+      width: 100%;
+    }
+
+    .mat-form-field-appearance-legacy .mat-hint {
+      display: flex;
+    }
+  }
+
+  .clear {
+    display: flex;
+    text-decoration: underline dotted;
+    cursor: pointer;
+    margin-left: 0.25rem;
+    color: rgb(255, 0, 0);
+
+    mat-icon {
+      margin-right: 0.125rem;
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  section {
+    flex-wrap: wrap;
+    padding-bottom: 1rem;
+  }
+}

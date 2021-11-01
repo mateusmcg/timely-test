@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{ event.title }}</h2>
+<mat-dialog-content class="mat-typography">
+  <img
+    mat-card-image
+    *ngIf="event.images"
+    [src]="
+      event.images[0]?.sizes?.medium
+        ? event.images[0]?.sizes?.medium.url
+        : event.images[0]?.sizes?.full
+        ? event.images[0]?.sizes?.full.url
+        : event.images[0]?.sizes?.small?.url
+    "
+    [alt]="event.title"
+  />
+
+  <p>
+    {{ event.description_short }}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

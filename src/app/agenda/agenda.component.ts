@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CalendarService } from '../core/calendar/calendar.service';
+import { FilterService } from '../core/filter/filter.service';
 
 @Component({
   selector: 'app-agenda',
@@ -7,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgendaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private calendarService: CalendarService, private filterService: FilterService) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
 }

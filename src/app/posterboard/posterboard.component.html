@@ -1,1 +1,28 @@
-<p>posterboard works!</p>
+<section>
+  <mat-card class="card" *ngFor="let event of filteredEvents" (click)="openDetails(event)">
+    <mat-card-header>
+      <div class="small-date">{{ event.start_datetime | date:'MMM d EEE' }}</div>
+      <mat-card-title>{{ event.title | titlecase }}</mat-card-title>
+      <mat-card-subtitle>{{
+        event.event_status | titlecase
+      }} | {{ event.start_datetime | date:'h:mm a' }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      *ngIf="event.images"
+      [src]="
+        event.images[0]?.sizes?.medium
+          ? event.images[0]?.sizes?.medium.url
+          : event.images[0]?.sizes?.full
+          ? event.images[0]?.sizes?.full.url
+          : event.images[0]?.sizes?.small?.url
+      "
+      [alt]="event.title"
+    />
+    <mat-card-content>
+      <p>
+        {{ event.description_short }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</section>

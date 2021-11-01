@@ -1,5 +1,6 @@
 <section>
-  <app-header></app-header>
+  <app-header [calendarSettings]="calendarSettings"></app-header>
+  <app-filter *ngIf="calendarSettings?.show_filters" [filters]="calendarSettings?.calendar_filters" [calendarId]="calendarSettings?.id"></app-filter>
 
   <router-outlet></router-outlet>
 </section>

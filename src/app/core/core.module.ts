@@ -10,10 +10,12 @@ import {
   MatMomentDateModule,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from "@angular/material-moment-adapter";
-import { UIStateService } from "./ui-state/ui-state.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HeaderModule } from "../header/header.module";
 import { HeaderComponent } from "../header/header.component";
+import { FilterModule } from "../filter/filter.module";
+import { FilterComponent } from "../filter/filter.component";
+import { FilterService } from "./filter/filter.service";
 
 export const MY_FORMATS = {
   parse: {
@@ -30,19 +32,23 @@ export const MY_FORMATS = {
 @NgModule({
   declarations: [],
   imports: [
+    // Core Modules
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
-    CommonModule,
     HttpClientModule,
+    // 3rd Party
     MatMomentDateModule,
-    HeaderModule
+    // App Modules
+    HeaderModule,
+    FilterModule
   ],
   providers: [
     CalendarService,
-    UIStateService,
+    FilterService,
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, FilterComponent, CommonModule],
 })
 export class CoreModule {}
