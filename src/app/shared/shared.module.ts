@@ -1,7 +1,7 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { EventDetailsComponent } from "./event-details/event-details.component";
-import { MatButtonModule, MatDialogModule } from "@angular/material";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { MatButtonModule, MatDialogModule } from '@angular/material';
 
 @NgModule({
   entryComponents: [EventDetailsComponent],

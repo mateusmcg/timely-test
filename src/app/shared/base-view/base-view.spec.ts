@@ -1,16 +1,16 @@
-import { Component, NO_ERRORS_SCHEMA } from "@angular/core";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { MatDialog, MatDialogModule } from "@angular/material";
-import { ActivatedRoute } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
-import { CalendarService } from "src/app/core/calendar/calendar.service";
-import { FilterService } from "src/app/core/filter/filter.service";
-import { Mocks } from "src/testing/mocks.enum";
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog, MatDialogModule } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CalendarService } from 'src/app/core/calendar/calendar.service';
+import { FilterService } from 'src/app/core/filter/filter.service';
+import { Mocks } from 'src/testing/mocks.enum';
 
-import { BaseView } from "./base-view";
+import { BaseView } from './base-view';
 
 @Component({
-  template: "",
+  template: '',
 })
 class MockedComponent extends BaseView {
   constructor(
@@ -25,7 +25,7 @@ class MockedComponent extends BaseView {
   protected loadEvents(): void {}
 }
 
-describe("BaseViewComponent", () => {
+describe('BaseViewComponent', () => {
   let component: MockedComponent;
   let fixture: ComponentFixture<MockedComponent>;
 
@@ -47,7 +47,7 @@ describe("BaseViewComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

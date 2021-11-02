@@ -1,20 +1,18 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { filter, map } from "rxjs/operators";
-import { CalendarEvent } from "../models/calendar-event.interface";
-import { CalendarSettings } from "../models/calendar-settings.interface";
-import { environment } from "../../../environments/environment";
-import { CalendarFilter } from "../models/calendar-filter.interface";
-import { CalendarFilterItem } from "../models/calendar-filter-item.interface";
-import * as moment from "moment";
-import { DATE_FORMATS } from "../enum/date-formats.enum";
-import { CalendarEventGroup } from "../models/calendar-event-group.interface";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { CalendarEvent } from '../models/calendar-event.interface';
+import { CalendarSettings } from '../models/calendar-settings.interface';
+import { environment } from '../../../environments/environment';
+import { CalendarFilter } from '../models/calendar-filter.interface';
+import { CalendarFilterItem } from '../models/calendar-filter-item.interface';
+import * as moment from 'moment';
+import { DATE_FORMATS } from '../enum/date-formats.enum';
+import { CalendarEventGroup } from '../models/calendar-event-group.interface';
 
 @Injectable()
 export class CalendarService {
-  private readonly;
-
   constructor(private http: HttpClient) {}
 
   public getSettings(): Observable<CalendarSettings> {
@@ -22,7 +20,7 @@ export class CalendarService {
 
     return this.http
       .post<{ data: CalendarSettings }>(settingsUrl, {
-        url: "https://calendar.time.ly/6a37fb6n",
+        url: 'https://calendar.time.ly/6a37fb6n',
       })
       .pipe(map((settings: { data: CalendarSettings }) => settings.data));
   }
@@ -36,9 +34,9 @@ export class CalendarService {
     const eventsUrl = `${environment.apiUrl}/api/calendars/${calendarId}/events`;
 
     const params: HttpParams = new HttpParams()
-      .set("start_date", startDate.format(DATE_FORMATS.YYYY_MM_DD))
-      .set("per_page", perPage.toString())
-      .set("page", page.toString());
+      .set('start_date', startDate.format(DATE_FORMATS.YYYY_MM_DD))
+      .set('per_page', perPage.toString())
+      .set('page', page.toString());
 
     return this.http
       .get<{ data: { items: CalendarEvent[] } }>(eventsUrl, { params })
@@ -57,14 +55,14 @@ export class CalendarService {
     const eventsUrl = `${environment.apiUrl}/api/calendars/${calendarId}/events`;
 
     let params: HttpParams = new HttpParams()
-      .set("start_date", startDate.format(DATE_FORMATS.YYYY_MM_DD))
-      .set("per_page", perPage.toString())
-      .set("page", page.toString())
-      .set("group_by_date", "1");
+      .set('start_date', startDate.format(DATE_FORMATS.YYYY_MM_DD))
+      .set('per_page', perPage.toString())
+      .set('page', page.toString())
+      .set('group_by_date', '1');
 
     if (endDate) {
-      params = params.set("end_date", endDate.format(DATE_FORMATS.YYYY_MM_DD));
-      params = params.set("lastDate", null);
+      params = params.set('end_date', endDate.format(DATE_FORMATS.YYYY_MM_DD));
+      params = params.set('lastDate', null);
     }
 
     return this.http
@@ -96,14 +94,14 @@ export class CalendarService {
   public getFilters(
     calendarId: number,
     type: string,
-    path: string = "taxonomies"
+    path: string = 'taxonomies'
   ): Observable<CalendarFilter> {
     const eventsUrl = `${environment.apiUrl}/api/calendars/${calendarId}/${path}`;
 
     const params: HttpParams = new HttpParams()
-      .set("per_page", "1000")
-      .set("type", type)
-      .set("page", "1");
+      .set('per_page', '1000')
+      .set('type', type)
+      .set('page', '1');
 
     return this.http
       .get<{

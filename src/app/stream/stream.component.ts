@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { CalendarService } from '../core/calendar/calendar.service';
 import { FilterService } from '../core/filter/filter.service';
 import { CalendarEventGroup } from '../core/models/calendar-event-group.interface';
-import { CalendarEvent } from '../core/models/calendar-event.interface';
 import { BaseView } from '../shared/base-view/base-view';
 
 @Component({

@@ -1,53 +1,53 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { environment } from "src/environments/environment";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
   {
-    path: "calendar/:id",
+    path: 'calendar/:id',
     children: [
       {
-        path: "posterboard",
+        path: 'posterboard',
         loadChildren: () =>
-          import("./posterboard/posterboard.module").then(
+          import('./posterboard/posterboard.module').then(
             (m) => m.PosterboardModule
           ),
       },
       {
-        path: "tile",
+        path: 'tile',
         loadChildren: () =>
-          import("./tile/tile.module").then((m) => m.TileModule),
+          import('./tile/tile.module').then((m) => m.TileModule),
       },
       {
-        path: "stream",
+        path: 'stream',
         loadChildren: () =>
-          import("./stream/stream.module").then((m) => m.StreamModule),
+          import('./stream/stream.module').then((m) => m.StreamModule),
       },
       {
-        path: "agenda",
+        path: 'agenda',
         loadChildren: () =>
-          import("./agenda/agenda.module").then((m) => m.AgendaModule),
+          import('./agenda/agenda.module').then((m) => m.AgendaModule),
       },
       {
-        path: "month",
+        path: 'month',
         loadChildren: () =>
-          import("./month/month.module").then((m) => m.MonthModule),
+          import('./month/month.module').then((m) => m.MonthModule),
       },
       {
-        path: "week",
+        path: 'week',
         loadChildren: () =>
-          import("./week/week.module").then((m) => m.WeekModule),
+          import('./week/week.module').then((m) => m.WeekModule),
       },
       {
-        path: "",
+        path: '',
         redirectTo: environment.defaultView,
-        pathMatch: "full",
+        pathMatch: 'full',
       },
     ],
   },
   {
-    path: "**",
-    redirectTo: "",
+    path: '**',
+    redirectTo: '',
   },
 ];
 

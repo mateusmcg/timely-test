@@ -1,10 +1,10 @@
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { TestBed, async, ComponentFixture } from "@angular/core/testing";
-import { Mocks } from "src/testing/mocks.enum";
-import { AppComponent } from "./app.component";
-import { CalendarService } from "./core/calendar/calendar.service";
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { Mocks } from 'src/testing/mocks.enum';
+import { AppComponent } from './app.component';
+import { CalendarService } from './core/calendar/calendar.service';
 
-describe("AppComponent", () => {
+describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
@@ -24,7 +24,7 @@ describe("AppComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

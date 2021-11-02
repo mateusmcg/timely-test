@@ -2,23 +2,22 @@ import {
   Component,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges,
-} from "@angular/core";
-import { forkJoin, Observable } from "rxjs";
-import { isNumber, isObject } from "util";
-import { CalendarService } from "../core/calendar/calendar.service";
-import { CalendarFilter } from "../core/models/calendar-filter.interface";
-import { COMMA, ENTER } from "@angular/cdk/keycodes";
-import { CalendarFilterItem } from "../core/models/calendar-filter-item.interface";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { map, startWith } from "rxjs/operators";
-import { FilterService } from "../core/filter/filter.service";
+} from '@angular/core';
+import { forkJoin, Observable } from 'rxjs';
+import { isNumber, isObject } from 'util';
+import { CalendarService } from '../core/calendar/calendar.service';
+import { CalendarFilter } from '../core/models/calendar-filter.interface';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { CalendarFilterItem } from '../core/models/calendar-filter-item.interface';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
+import { FilterService } from '../core/filter/filter.service';
 
 @Component({
-  selector: "app-filter",
-  templateUrl: "./filter.component.html",
-  styleUrls: ["./filter.component.scss"],
+  selector: 'app-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent implements OnChanges {
   @Input()
@@ -47,7 +46,7 @@ export class FilterComponent implements OnChanges {
     this.loadFilters();
   }
 
-  public displayFn(value: CalendarFilterItem[]): string | null {
+  public displayFn(): string | null {
     return null;
   }
 
@@ -96,7 +95,7 @@ export class FilterComponent implements OnChanges {
         requests.push(
           this.calendarService.getFilters(
             this.calendarId,
-            "taxonomy_filter_group_item",
+            'taxonomy_filter_group_item',
             `taxonomies/${filter.toString()}`
           )
         );
@@ -122,8 +121,8 @@ export class FilterComponent implements OnChanges {
 
         filter.displayFn = this.displayFn;
 
-        if (filter.id === "taxonomy_filter_group_item") {
-          filter.display_name = "Source";
+        if (filter.id === 'taxonomy_filter_group_item') {
+          filter.display_name = 'Source';
         }
       });
 

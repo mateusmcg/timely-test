@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatCardModule, MatDialogModule } from '@angular/material';
+import { MatCardModule } from '@angular/material';
 import { SharedModule } from '../shared/shared.module';
 
 import { PosterboardRoutingModule } from './posterboard-routing.module';

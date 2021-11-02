@@ -1,12 +1,12 @@
-import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { MAT_DIALOG_DATA } from "@angular/material";
-import { By } from "@angular/platform-browser";
-import { CalendarEvent } from "src/app/core/models/calendar-event.interface";
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { By } from '@angular/platform-browser';
+import { CalendarEvent } from 'src/app/core/models/calendar-event.interface';
 
-import { EventDetailsComponent } from "./event-details.component";
+import { EventDetailsComponent } from './event-details.component';
 
-describe("EventDetailsComponent", () => {
+describe('EventDetailsComponent', () => {
   let component: EventDetailsComponent;
   let fixture: ComponentFixture<EventDetailsComponent>;
 
@@ -17,9 +17,9 @@ describe("EventDetailsComponent", () => {
         {
           provide: MAT_DIALOG_DATA,
           useValue: {
-            title: "test title",
+            title: 'test title',
             id: 1,
-            description_short: "description short",
+            description_short: 'description short',
           } as CalendarEvent,
         },
       ],
@@ -33,19 +33,19 @@ describe("EventDetailsComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it("shoud render title", () => {
-    const h2: DebugElement = fixture.debugElement.query(By.css("h2"));
+  it('shoud render title', () => {
+    const h2: DebugElement = fixture.debugElement.query(By.css('h2'));
     expect(h2).toBeDefined();
-    expect(h2.nativeElement.innerHTML).toEqual("test title");
+    expect(h2.nativeElement.innerHTML).toEqual('test title');
   });
 
-  it("shoud render short description", () => {
-    const p: DebugElement = fixture.debugElement.query(By.css("p"));
+  it('shoud render short description', () => {
+    const p: DebugElement = fixture.debugElement.query(By.css('p'));
     expect(p).toBeDefined();
-    expect(p.nativeElement.innerHTML.trim()).toEqual("description short");
+    expect(p.nativeElement.innerHTML.trim()).toEqual('description short');
   });
 });

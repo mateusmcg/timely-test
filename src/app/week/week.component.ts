@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { CalendarService } from '../core/calendar/calendar.service';
@@ -22,8 +22,8 @@ export class WeekComponent extends BaseView {
   }
 
   protected loadEvents(): void {
-    const weekStart = this.startDate.startOf("week").clone();
-    const weekEnd = this.startDate.endOf("week").clone();
+    const weekStart = this.startDate.startOf('week').clone();
+    const weekEnd = this.startDate.endOf('week').clone();
 
     this.calendarService
       .getEventsGroup(this.calendarId, weekStart, weekEnd, 600)

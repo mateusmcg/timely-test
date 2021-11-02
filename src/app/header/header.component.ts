@@ -1,19 +1,19 @@
-import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import {
   ActivatedRoute,
   NavigationExtras,
   ParamMap,
   Router,
-} from "@angular/router";
-import * as moment from "moment";
-import { CalendarSettings } from "src/app/core/models/calendar-settings.interface";
-import { DATE_FORMATS } from "../core/enum/date-formats.enum";
+} from '@angular/router';
+import * as moment from 'moment';
+import { CalendarSettings } from 'src/app/core/models/calendar-settings.interface';
+import { DATE_FORMATS } from '../core/enum/date-formats.enum';
 
 @Component({
-  selector: "app-header",
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnChanges {
   @Input()
@@ -55,18 +55,18 @@ export class HeaderComponent implements OnChanges {
 
   private listenToRouteChanges(): void {
     this.activatedRoute.queryParamMap.subscribe((params: ParamMap) => {
-      const startDate = params.has("startDate")
-        ? moment(params.get("startDate"))
+      const startDate = params.has('startDate')
+        ? moment(params.get('startDate'))
         : moment();
       this.date.patchValue(startDate);
 
-      const segments: string[] = this.router.url.split("?")[0].split("/");
+      const segments: string[] = this.router.url.split('?')[0].split('/');
       this.selectedView =
         segments && segments.length === 4
           ? segments[3]
           : this.calendarSettings.default_view;
 
-      if (this.router.url === "/") {
+      if (this.router.url === '/') {
         this.loadToday(this.calendarSettings.default_view);
       }
     });
@@ -82,7 +82,7 @@ export class HeaderComponent implements OnChanges {
         queryParams: {
           startDate: date.format(DATE_FORMATS.MM_DD_YYYY),
         },
-        queryParamsHandling: "merge",
+        queryParamsHandling: 'merge',
       };
 
       this.navigateToCalendar(this.selectedView, params);
@@ -91,8 +91,8 @@ export class HeaderComponent implements OnChanges {
 
   private navigateToCalendar(
     view: string,
-    params: NavigationExtras = { queryParamsHandling: "merge" }
+    params: NavigationExtras = { queryParamsHandling: 'merge' }
   ): void {
-    this.router.navigate(["calendar", this.calendarSettings.id, view], params);
+    this.router.navigate(['calendar', this.calendarSettings.id, view], params);
   }
 }

@@ -1,10 +1,9 @@
-import { fakeAsync, TestBed, tick } from "@angular/core/testing";
-import { CalendarFilterItem } from "../models/calendar-filter-item.interface";
-import { CalendarFilter } from "../models/calendar-filter.interface";
+import { TestBed } from '@angular/core/testing';
+import { CalendarFilterItem } from '../models/calendar-filter-item.interface';
 
-import { FilterService } from "./filter.service";
+import { FilterService } from './filter.service';
 
-describe("FilterService", () => {
+describe('FilterService', () => {
   let service: FilterService;
 
   beforeEach(() =>
@@ -17,11 +16,11 @@ describe("FilterService", () => {
     service = TestBed.get(FilterService);
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it("should listen and emit filters", () => {
+  it('should listen and emit filters', () => {
     service.emit([{ id: 123 }, { id: 987 }] as CalendarFilterItem[]);
 
     service.listen().subscribe((filters: CalendarFilterItem[]) => {
@@ -32,7 +31,7 @@ describe("FilterService", () => {
     });
   });
 
-  it("should listen last emitted value", () => {
+  it('should listen last emitted value', () => {
     service.emit([{ id: 555 }] as CalendarFilterItem[]);
 
     service.listen().subscribe((filters: CalendarFilterItem[]) => {

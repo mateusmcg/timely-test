@@ -1,5 +1,5 @@
-import * as moment from "moment";
-import { CalendarEventImage } from "./calendar-event-image.interface";
+import * as moment from 'moment';
+import { CalendarEventImage } from './calendar-event-image.interface';
 
 export interface CalendarEvent {
   id: number;
