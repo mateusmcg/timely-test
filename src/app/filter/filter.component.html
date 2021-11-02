@@ -35,30 +35,5 @@
         </div>
       </mat-option>
     </mat-autocomplete>
-
-    <!-- <mat-form-field class="example-chip-list">
-      <mat-chip-list #chipList aria-label="Fruit selection">
-        <mat-chip
-          *ngFor="let selectedFilter of filter.selectedItems"
-          [selectable]="true"
-          [removable]="true"
-          (removed)="remove(selectedFilter, filter)">
-          {{ selectedFilter.title }}
-          <mat-icon matChipRemove>cancel</mat-icon>
-        </mat-chip>
-        <input
-          [placeholder]="filter.display_name"
-          #fruitInput
-          [formControlName]="filter.id"
-          [matAutocomplete]="auto"
-          [matChipInputFor]="chipList"
-          [matChipInputAddOnBlur]="false">
-      </mat-chip-list>
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event, filter)">
-        <mat-option *ngFor="let filterItem of filter.filtereditems | async" [value]="filterItem">
-          {{ filterItem.title }}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field> -->
   </div>
 </section>

@@ -33,7 +33,7 @@ export abstract class BaseView implements OnInit {
   }
 
   public openDetails(event: CalendarEvent): void {
-    let dialogRef = this.dialog.open(EventDetailsComponent, {
+    this.dialog.open(EventDetailsComponent, {
       data: event
     });
   }

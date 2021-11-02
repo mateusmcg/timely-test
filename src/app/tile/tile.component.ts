@@ -26,8 +26,6 @@ export class TileComponent extends BaseView {
     this.calendarService
       .getEvents(this.calendarId, this.startDate)
       .subscribe((events: CalendarEvent[]) => {
-        console.log(events);
-
         this.events = events;
         this.filteredEvents = events;
 

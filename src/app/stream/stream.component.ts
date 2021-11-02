@@ -27,8 +27,6 @@ export class StreamComponent extends BaseView {
     this.calendarService
       .getEventsGroup(this.calendarId, this.startDate)
       .subscribe((events: CalendarEventGroup[]) => {
-        console.log(events);
-
         this.groupEvents = events;
 
         this.filterService.emitLastValue();

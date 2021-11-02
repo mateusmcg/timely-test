@@ -47,6 +47,47 @@ export class FilterComponent implements OnChanges {
     this.loadFilters();
   }
 
+  public displayFn(value: CalendarFilterItem[]): string | null {
+    return null;
+  }
+
+  public selected(
+    event: Event,
+    filterItem: CalendarFilterItem,
+    filter: CalendarFilter
+  ): void {
+    event.stopPropagation();
+    this.toggleSelection(filterItem, filter);
+  }
+
+  public toggleSelection(
+    filterItem: CalendarFilterItem,
+    filter: CalendarFilter
+  ) {
+    filterItem.selected = !filterItem.selected;
+
+    if (filterItem.selected) {
+      filter.selectedItems.push(filterItem);
+    } else {
+      const i = filter.selectedItems.findIndex(
+        (item: CalendarFilterItem) => item.id === filterItem.id
+      );
+
+      filter.selectedItems.splice(i, 1);
+    }
+
+    this.filterService.emit(this.getAllSelectedFilters());
+  }
+
+  public clearFilters(filter: CalendarFilter): void {
+    filter.selectedItems.forEach(
+      (item: CalendarFilterItem) => (item.selected = !item.selected)
+    );
+    filter.selectedItems = [];
+
+    this.filterService.emit(this.getAllSelectedFilters());
+  }
+
   private loadFilters(): void {
     const requests: Observable<CalendarFilter>[] = [];
 
@@ -88,47 +129,6 @@ export class FilterComponent implements OnChanges {
 
       this.calendarFilters = result;
     });
-  }
-
-  public displayFn(value: CalendarFilterItem[]): string | null {
-    return null;
-  }
-
-  public selected(
-    event: Event,
-    filterItem: CalendarFilterItem,
-    filter: CalendarFilter
-  ): void {
-    event.stopPropagation();
-    this.toggleSelection(filterItem, filter);
-  }
-
-  public toggleSelection(
-    filterItem: CalendarFilterItem,
-    filter: CalendarFilter
-  ) {
-    filterItem.selected = !filterItem.selected;
-
-    if (filterItem.selected) {
-      filter.selectedItems.push(filterItem);
-    } else {
-      const i = filter.selectedItems.findIndex(
-        (item: CalendarFilterItem) => item.id === filterItem.id
-      );
-
-      filter.selectedItems.splice(i, 1);
-    }
-
-    this.filterService.emit(this.getAllSelectedFilters());
-  }
-
-  public clearFilters(filter: CalendarFilter): void {
-    filter.selectedItems.forEach(
-      (item: CalendarFilterItem) => (item.selected = !item.selected)
-    );
-    filter.selectedItems = [];
-
-    this.filterService.emit(this.getAllSelectedFilters());
   }
 
   private getAllSelectedFilters(): CalendarFilterItem[] {

@@ -106,10 +106,13 @@ export class CalendarService {
       .set("page", "1");
 
     return this.http
-      .get<{ data: { display_name: string; items: CalendarFilterItem[] } }>(
-        eventsUrl,
-        { params }
-      )
+      .get<{
+        data: {
+          query_name: string;
+          display_name: string;
+          items: CalendarFilterItem[];
+        };
+      }>(eventsUrl, { params })
       .pipe(
         map(
           (filters: {

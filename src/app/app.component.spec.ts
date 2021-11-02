@@ -1,35 +1,30 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { TestBed, async, ComponentFixture } from "@angular/core/testing";
+import { Mocks } from "src/testing/mocks.enum";
+import { AppComponent } from "./app.component";
+import { CalendarService } from "./core/calendar/calendar.service";
 
-describe('AppComponent', () => {
+describe("AppComponent", () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
+      declarations: [AppComponent],
+      providers: [
+        { provide: CalendarService, useValue: Mocks.CALENDAR_SERVICE },
       ],
-      declarations: [
-        AppComponent
-      ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'timely-test'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('timely-test');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('timely-test app is running!');
+  });
+
+  it("should create", () => {
+    expect(component).toBeTruthy();
   });
 });

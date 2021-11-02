@@ -20,8 +20,6 @@ export class AppComponent implements OnInit {
       .getSettings()
       .subscribe((settings: CalendarSettings) => {
         this.calendarSettings = settings;
-        console.log(settings);
-
       });
   }
 }
